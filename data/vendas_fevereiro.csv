@@ -1,0 +1,8 @@
+data,cliente,produto,categoria,valor,quantidade,canal,vendedor
+2025-02-02,Ana Silva,Monitor,Eletronicos,1600,1,Online,Carlos
+2025-02-05,Joao Souza,Cadeira,Moveis,850,1,Loja,Marina
+2025-02-09,Lucas Rocha,Notebook,Eletronicos,3800,1,Online,Carlos
+2025-02-14,Carla Mendes,Mouse,Eletronicos,150,1,Loja,Marina
+2025-02-18,Pedro Lima,Teclado,Eletronicos,220,1,Online,Carlos
+2025-02-22,Mariana Alves,Monitor,Eletronicos,1550,1,Online,Carlos
+2025-02-27,Ana Silva,Notebook,Eletronicos,3600,1,Loja,Marina
