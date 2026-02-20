@@ -45,6 +45,21 @@ def salvar_grafico_faturamento_mes(df_mes: pd.DataFrame, caminho: Path) -> None:
     plt.close()
 
 
+def salvar_grafico_faturamento_categoria(df_cat: pd.DataFrame, caminho: Path) -> None:
+    if df_cat.empty:
+        return
+
+    plt.figure()
+    plt.bar(df_cat["categoria"], df_cat["valor"])
+    plt.xticks(rotation=45, ha="right")
+    plt.title("Faturamento por categoria")
+    plt.xlabel("Categoria")
+    plt.ylabel("Faturamento")
+    plt.tight_layout()
+    plt.savefig(caminho, dpi=150)
+    plt.close()
+
+
 def main():
     print("Iniciando Projeto 3...")
 
@@ -56,6 +71,7 @@ def main():
     # 2) Limpeza
     df = limpar_dados(df_raw)
 
+    # Salvar base tratada
     base_csv = PASTA_OUTPUT / "base_tratada.csv"
     df.to_csv(base_csv, index=False, encoding="utf-8")
 
@@ -75,34 +91,19 @@ def main():
         df_cat.to_excel(writer, index=False, sheet_name="Por_Categoria")
         df.to_excel(writer, index=False, sheet_name="Base_Limpa")
 
-    # 5) Gráfico
-    grafico_png = PASTA_OUTPUT / "grafico_faturamento_mes.png"
-    salvar_grafico_faturamento_mes(df_mes, grafico_png)
+    # 5) Gráficos
+    grafico_mes = PASTA_OUTPUT / "grafico_faturamento_mes.png"
+    salvar_grafico_faturamento_mes(df_mes, grafico_mes)
+
+    grafico_categoria = PASTA_OUTPUT / "grafico_faturamento_categoria.png"
+    salvar_grafico_faturamento_categoria(df_cat, grafico_categoria)
 
     print("Projeto finalizado com sucesso!")
-    print(f"Relatório salvo em: {relatorio_xlsx}")
-    print(f"Gráfico salvo em: {grafico_png}")
-
-    grafico_cat_png = PASTA_OUTPUT / "grafico_faturamento_categoria.png"
-    salvar_grafico_faturamento_categoria(df_cat, grafico_cat_png)
-
     print(f"📄 Base tratada: {base_csv}")
-    print(f"📈 Gráfico categoria: {grafico_cat_png}")
+    print(f"📊 Relatório Excel: {relatorio_xlsx}")
+    print(f"📈 Gráfico mês: {grafico_mes}")
+    print(f"📈 Gráfico categoria: {grafico_categoria}")
 
 
 if __name__ == "__main__":
     main()
-
-def salvar_grafico_faturamento_categoria(df_cat: pd.DataFrame, caminho: Path) -> None:
-    if df_cat.empty:
-        return
-
-    plt.figure()
-    plt.bar(df_cat["categoria"], df_cat["valor"])
-    plt.xticks(rotation=45, ha="right")
-    plt.title("Faturamento por categoria")
-    plt.xlabel("Categoria")
-    plt.ylabel("Faturamento")
-    plt.tight_layout()
-    plt.savefig(caminho, dpi=150)
-    plt.close()
