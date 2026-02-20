@@ -52,3 +52,23 @@ projetos_3_analise_completa/
 
 ```bash
 python -m venv .venv
+
+```
+2️⃣ Ativar ambiente virtual (Windows PowerShell)
+
+```bash
+.\.venv\Scripts\Activate.ps1
+
+```
+3️⃣ Instalar dependências
+
+```bash
+pip install -r requirements.txt
+
+```
+4️⃣ Executar o pipeline
+
+```bash
+python src/main.py
+
+
